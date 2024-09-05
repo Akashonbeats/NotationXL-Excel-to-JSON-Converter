@@ -1,0 +1,58 @@
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Excel to JSON Converter</title>
+</head>
+<body>
+    <h1>Excel to JSON Converter</h1>
+    <form id="uploadForm" enctype="multipart/form-data">
+        <input type="file" id="excelFile" name="excelFile" accept=".xlsx, .xls">
+        <button type="submit">Convert</button>
+    </form>
+    <pre id="jsonOutput"></pre>
+
+    <script>
+        document.getElementById('uploadForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const fileInput = document.getElementById('excelFile');
+            const formData = new FormData();
+            formData.append('excelFile', fileInput.files[0]);
+    
+            const response = await fetch('/upload', {
+                method: 'POST',
+                body: formData
+            });
+    
+            if (response.ok) {
+                const blob = await response.blob();
+                const url = window.URL.createObjectURL(blob);
+    
+                // Extract the original file name without extension
+                const originalFileName = fileInput.files[0].name.split('.').slice(0, -1).join('.');
+    
+                // Generate a unique filename with date and time stamp
+                const date = new Date();
+                const day = date.getDate().toString().padStart(2, '0');
+                const month = (date.getMonth() + 1).toString().padStart(2, '0'); // Months are zero-based
+                const year = date.getFullYear();
+                const hours = date.getHours() % 12 || 12; // Convert to 12-hour format
+                const minutes = date.getMinutes().toString().padStart(2, '0');
+                const ampm = date.getHours() >= 12 ? 'PM' : 'AM';
+    
+                const timestamp = `${day}-${month}-${year} ${hours}:${minutes}${ampm}`;
+                const filename = `${originalFileName}_${timestamp}.json`;
+    
+                const a = document.createElement('a');
+                a.style.display = 'none';
+                a.href = url;
+                a.download = filename;
+                document.body.appendChild(a);
+                a.click();
+                window.URL.revokeObjectURL(url);
+            } else {
+                const json = await response.json();
+                document.getElementById('jsonOutput').textContent = JSON.stringify(json, null, 2);
+            }
+        });
+    </script>
+</body>
+</html>
