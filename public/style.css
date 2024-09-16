@@ -1,0 +1,57 @@
+body {
+    height: 95vh;
+    background-color: black;
+    color: white;
+    font-family: "Inter", system-ui;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+h1{
+    font-size: 2rem;
+    font-weight: 200;
+    margin-bottom: 70px;
+}
+/* Style the file input button */
+input[type="file"]::file-selector-button {
+    background-color: #1a1a1a;
+    margin-right: 20px;
+    color: white; /* White text */
+    border: none; /* Remove border */
+    padding: 10px 20px; /* Add some padding */
+    cursor: pointer; /* Pointer cursor on hover */
+    font-size: 16px; /* Increase font size */
+    border-radius: 5px; /* Rounded corners */
+    transition-duration: 1s;
+}
+/* Add hover effect */
+input[type="file"]::file-selector-button:hover {
+    background-color: #8f8f8f;
+    color: black;
+    transition-duration: 1s;
+}
+button{
+    background-color: #1a1a1a;
+    color: white; /* White text */
+    border: none; /* Remove border */
+    padding: 10px 20px; /* Add some padding */
+    cursor: pointer; /* Pointer cursor on hover */
+    font-size: 16px; /* Increase font size */
+    border-radius: 5px; /* Rounded corners */
+    transition-duration: 1s;
+}
+button:hover {
+    background-color: #8f8f8f;
+    color: black;
+    transition-duration: 1s;
+}
+footer{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    padding-block: 7px;
+    text-align: center;
+    background-color: #1a1a1a;
+    font-size: 0.7rem;
+}
