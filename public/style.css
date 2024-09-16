@@ -13,6 +13,9 @@ h1{
     font-weight: 200;
     margin-bottom: 70px;
 }
+span{
+    color: rgb(148, 0, 185);
+}
 /* Style the file input button */
 input[type="file"]::file-selector-button {
     background-color: #1a1a1a;
