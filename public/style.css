@@ -8,11 +8,89 @@ body {
     align-items: center;
     justify-content: center;
 }
-h1{
+
+body::before,
+body::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 20%; /* Adjust the height of the gradient as needed */
+    pointer-events: none; /* Ensure the gradient does not interfere with interactions */
+    z-index: 1; /* Ensure the gradient is on top */
+}
+
+body::before {
+    top: 0;
+    background: linear-gradient(to bottom, black, transparent);
+}
+
+body::after {
+    bottom: 0;
+    background: linear-gradient(to top, black, transparent);
+}
+
+@media screen and (max-width: 600px) {
+    body::before,
+    body::after {
+        height: 40%; /* Adjust the height of the gradient as needed */
+    }
+    
+}
+@keyframes roll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+.rollover {
+    position: absolute;
+    rotate: -90deg;
+    transform-origin: left top;
+    left: 10%;
+    top: 100%; /* Adjust this value as needed */
+    font-size: 7vw;
+    color: #494949;
+    margin: 0;
+    white-space: nowrap; /* Ensure text does not wrap */
+    overflow: hidden;
+    user-select: none;
+    width: 100%; /* Ensure the container takes full width */
+}
+
+.rollover-content {
+    display: inline-block;
+    animation: 10s roll linear infinite; /* Adjust duration as needed */
+    white-space: nowrap; /* Ensure text does not wrap */
+}
+
+h2 {
+    display: inline-block;
+    margin: 0; /* Remove default margin */
+}
+
+h2 span {
+    color: rgba(148, 0, 185, 0.452);
+}
+.toolwrapper{
+    display: inline;
+    text-align: center;
+    width: 100%;
+    margin-top: 50px;
+    background-color: transparent;
+    backdrop-filter: blur(10px);
+    width: auto;
+    border-radius: 18px;
+    padding: 40px;
+}
+h1 {
     font-size: 2rem;
     font-weight: 200;
     margin-bottom: 70px;
-}
+} 
 span{
     color: rgb(148, 0, 185);
 }
@@ -20,34 +98,47 @@ span{
 input[type="file"]::file-selector-button {
     background-color: #1a1a1a;
     margin-right: 20px;
-    color: white; /* White text */
-    border: none; /* Remove border */
-    padding: 10px 20px; /* Add some padding */
-    cursor: pointer; /* Pointer cursor on hover */
-    font-size: 16px; /* Increase font size */
-    border-radius: 5px; /* Rounded corners */
-    transition-duration: 1s;
+    color: white;
+    border: none;
+    padding: 15px 25px;
+    cursor: pointer;
+    font-size: 14px;
+    transition-duration: 0.5s;
+    border-radius: 18px;
+    border: solid 1px rgba(255, 255, 255, 0.308);
+}
+input[type="file"]::file-selector-button:active {
+    background-color: #afafaf;
 }
 /* Add hover effect */
 input[type="file"]::file-selector-button:hover {
-    background-color: #8f8f8f;
-    color: black;
-    transition-duration: 1s;
+    background-color: #494949;
+    transition-duration: 0.6s;
+    border-color: #1a1a1a;
 }
 button{
     background-color: #1a1a1a;
-    color: white; /* White text */
-    border: none; /* Remove border */
-    padding: 10px 20px; /* Add some padding */
-    cursor: pointer; /* Pointer cursor on hover */
-    font-size: 16px; /* Increase font size */
-    border-radius: 5px; /* Rounded corners */
-    transition-duration: 1s;
+    color: white;
+    border: solid 2px rgba(148, 0, 185, 0.349);
+    padding: 15px 25px;
+    cursor: pointer;
+    font-size: 14px;
+    transition-duration: 0.5s;
+    border-radius: 18px;
 }
 button:hover {
-    background-color: #8f8f8f;
-    color: black;
-    transition-duration: 1s;
+    background-color: #494949;
+    transition-duration: 2s;
+    border-color: #1a1a1a;
+}
+button:active {
+    background-color: #afafaf;
+}
+.description{
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+    font-weight: 100;
+    margin-top: 40px;
 }
 footer{
     position: fixed;
@@ -57,4 +148,9 @@ footer{
     text-align: center;
     background-color: #1a1a1a;
     font-size: 0.7rem;
+    color: #adadad;
+}
+footer a{
+    color: #adadad;
+    margin-left: 7px;
 }
