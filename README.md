@@ -10,4 +10,4 @@
 
 
 **Also available as a Docker Image**
-> docker push akashonbeats/notationex:1.1
+> docker pull akashonbeats/notationex:1.1
