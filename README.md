@@ -8,3 +8,4 @@
 
 **Also available as a Docker Image**
 > docker pull akashonbeats/notationex:1.1
+> docker run -p 5001:3000 akashonbeats/notationex:1.1
