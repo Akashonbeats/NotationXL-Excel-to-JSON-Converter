@@ -16,14 +16,16 @@
     </div>
     <div class="toolwrapper">
         <h1>Notation<span>XL</span> - The minimalistic ever Excel to <span>JSON</span> Converter</h1>
+        <p class="description">Upload an Excel file to convert it to JSON. The first row will be set as the JSON Properties.</p>
         <form id="uploadForm" enctype="multipart/form-data">
+            <label for="excelFile" class="custom-file-label">Choose File</label>
             <input type="file" id="excelFile" name="excelFile" accept=".xlsx, .xls">
             <button type="submit">Convert</button>
         </form>
         <div class="drop-area" id="dropArea">
             <p>Drag & Drop your Excel file here</p>
         </div>
-        <p class="description">Upload an Excel file to convert it to JSON. The first row will be set as the JSON Properties.</p>
+        <span id="selectedFileName" class="selected-file"></span>
         <pre id="jsonOutput"></pre>
     </div>
     <footer>Notation<span>XL</span> | Created by Akash Sampath.<a href="https://akashonbeats.github.io/Personal-Website/">Visit Website</a></footer>
@@ -32,6 +34,18 @@
     <script>
         const dropArea = document.getElementById('dropArea');
         const fileInput = document.getElementById('excelFile');
+        const customLabel = document.querySelector('.custom-file-label');
+        const selectedFileName = document.getElementById('selectedFileName');
+
+        fileInput.addEventListener('change', (e) => {
+            if (fileInput.files.length > 0) {
+                selectedFileName.innerHTML = `Selected file: <span>${fileInput.files[0].name}</span>`;
+                customLabel.textContent = 'Change File';
+            } else {
+                selectedFileName.textContent = '';
+                customLabel.textContent = 'Choose File';
+            }
+        });
 
         dropArea.addEventListener('dragover', (e) => {
             e.preventDefault();
