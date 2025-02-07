@@ -79,7 +79,6 @@ h2 span {
     display: inline;
     text-align: center;
     width: 100%;
-    margin-top: 50px;
     background-color: transparent;
     backdrop-filter: blur(20px);
     width: auto;
@@ -160,4 +159,28 @@ footer a:hover{
 }
 footer span{
     color: rgb(148, 0, 185);
+}
+
+.drop-area {
+    display: inline-block;
+    width: 40%;
+    border: 2px dashed rgba(148, 0, 185, 0.349);
+    border-radius: 18px;
+    padding: 50px;
+    text-align: center;
+    background-color: #1a1a1a;
+    color: white;
+    transition: background-color 0.5s, border-color 0.5s;
+    margin-top: 20px;
+}
+
+.drop-area.dragover {
+    background-color: #494949;
+    border-color: #1a1a1a;
+}
+
+.drop-area p {
+    display: inline-block;
+    margin: 0;
+    font-size: 1rem;
 }

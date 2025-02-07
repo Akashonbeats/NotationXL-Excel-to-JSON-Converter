@@ -20,6 +20,9 @@
             <input type="file" id="excelFile" name="excelFile" accept=".xlsx, .xls">
             <button type="submit">Convert</button>
         </form>
+        <div class="drop-area" id="dropArea">
+            <p>Drag & Drop your Excel file here</p>
+        </div>
         <p class="description">Upload an Excel file to convert it to JSON. The first row will be set as the JSON Properties.</p>
         <pre id="jsonOutput"></pre>
     </div>
@@ -27,6 +30,27 @@
 </body>
 
     <script>
+        const dropArea = document.getElementById('dropArea');
+        const fileInput = document.getElementById('excelFile');
+
+        dropArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            dropArea.classList.add('dragover');
+        });
+
+        dropArea.addEventListener('dragleave', () => {
+            dropArea.classList.remove('dragover');
+        });
+
+        dropArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            dropArea.classList.remove('dragover');
+            const files = e.dataTransfer.files;
+            if (files.length) {
+                fileInput.files = files;
+            }
+        });
+
         document.getElementById('uploadForm').addEventListener('submit', async (e) => {
             e.preventDefault();
             const fileInput = document.getElementById('excelFile');
